@@ -28,7 +28,7 @@ Module Make(Vars : OrderedType)<:ILL_formulas(Vars).
   Reserved Notation "x ⊢ y" (at level 70, no associativity).
   Reserved Notation "! x" (at level 40, no associativity).
   Reserved Notation "x & y" (at level 51, no associativity).
-  Reserved Notation "⊤" (at level 10, no associativity).
+  Reserved Notation "⊤" (at level 0, no associativity).
   Reserved Notation "f =φ?= y" (at level 70, no associativity).
 
   (** Le type des formules, les atomes sont dénotés par [Proposition]. *)

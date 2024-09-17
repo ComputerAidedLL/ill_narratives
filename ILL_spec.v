@@ -22,14 +22,12 @@ Module Type ILL_sig(Vars : OrderedType).
   Include ILL_formulas(Vars).
   Declare  Module Import FormulaMultiSet : multiset_spec.S(FormulaOrdered).
   Reserved Notation "x ⊢ y" (at level 70, no associativity).
-  Reserved Notation "∪" (at level 60, right associativity).
-  Reserved Notation "∅" (at level 10, no associativity).
+  Reserved Notation "∅" (at level 0, no associativity).
 
   Open Scope ILL_scope.
   Infix "∪" := union (at level 65, right associativity) : ILL_scope.
   Notation " a :: b " := (add a b) (at level 60, right associativity) : ILL_scope.
   Notation "{ a , .. , b }" := (add a .. (add b empty) ..) (at level 40): ILL_scope.
-  Notation "{ }" := empty (at level 40) : ILL_scope.
   Notation "∅" := empty : ILL_scope.
 
   (* Notation pour l'égalité des environnements (égalité des multisets). *)

@@ -1237,13 +1237,11 @@ Qed.
     reflexivity.
   Qed.
 
-  Reserved Notation "∪" (at level 60, right associativity).
-  Reserved Notation "∅" (at level 10, no associativity).
+  Reserved Notation "∅" (at level 0, no associativity).
 
   Infix "∪" := union (at level 65, right associativity) : ILL_scope.
   Notation " a :: b " := (add a b) (at level 60, right associativity) : ILL_scope.
   Notation "{ a , .. , b }" := (add a .. (add b empty) ..) (at level 40): ILL_scope.
-  Notation "{ }" := empty (at level 40) : ILL_scope.
   Notation "∅" := (empty) : ILL_scope.
   Notation " E == F " := (eq E F) (at level 80): ILL_scope.
 
