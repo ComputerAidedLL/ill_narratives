@@ -1,7 +1,7 @@
-Require Import FunInd.
-Require Import OrderedType OrderedTypeEx.
-Require Import PeanoNat Lia.
-Require Import Utf8_core.
+From Stdlib Require Import FunInd.
+From Stdlib Require Import OrderedType OrderedTypeEx.
+From Stdlib Require Import PeanoNat Lia.
+From Stdlib Require Import Utf8_core.
 Require Import ILL.
 Require Import vars.
 Require Import multiset_spec.

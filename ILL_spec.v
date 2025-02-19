@@ -14,8 +14,8 @@ ensuite il suffit de taper la commande latex correspondante.
 *)
 Require Import basic.
 Require Import multiset_spec.
-Require Import OrderedType.
-Require Import Utf8_core.
+From Stdlib Require Import OrderedType.
+From Stdlib Require Import Utf8_core.
 Require Import formulas_spec.
 
 Module Type ILL_sig(Vars : OrderedType).

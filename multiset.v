@@ -1,9 +1,9 @@
-Require Import Utf8_core Lia.
-Require Import FMapInterface.
-Require Import FMapFacts.
-Require Import FMapAVL.
-Require Import OrderedType.
-Require Import FunInd.
+From Stdlib Require Import Utf8_core Lia.
+From Stdlib Require Import FMapInterface.
+From Stdlib Require Import FMapFacts.
+From Stdlib Require Import FMapAVL.
+From Stdlib Require Import OrderedType.
+From Stdlib Require Import FunInd.
 Require Import basic multiset_spec.
 Module PreMake(X:OrderedType)(Maps:FMapInterface.S with Module E:=X) <: S(X).
   Module MapsFact := WFacts(Maps).

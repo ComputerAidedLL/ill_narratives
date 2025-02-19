@@ -16,8 +16,8 @@ Require formulas.
 Require Import basic.
 Require Import multiset_spec.
 Require Import ILL_spec.
-Require Import OrderedType.
-Require Import Utf8_core.
+From Stdlib Require Import OrderedType.
+From Stdlib Require Import Utf8_core.
 Require Import vars.
 Require multiset.
 

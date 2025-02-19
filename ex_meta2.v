@@ -1,4 +1,4 @@
-Require Import Utf8_core.
+From Stdlib Require Import Utf8_core.
 Require ILLVarInt. (* Don't want import it. *)
 Import ILLVarInt.MILL. (* only this *)
 Import ILLVarInt.Tacs. (* only this *)

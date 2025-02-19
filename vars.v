@@ -1,8 +1,8 @@
-Require Import OrderedType Lia.
-Require Import String.
-Require Import Utf8_core.
-Require Import FunInd.
-Require Import NArith.
+From Stdlib Require Import OrderedType Lia.
+From Stdlib Require Import String.
+From Stdlib Require Import Utf8_core.
+From Stdlib Require Import FunInd.
+From Stdlib Require Import NArith.
 
 Module VarsString <: OrderedType with Definition t := String.string.
   Definition t:= String.string.

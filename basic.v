@@ -1,5 +1,5 @@
-Require Import Setoid.
-Require Import SetoidClass.
+From Stdlib Require Import Setoid.
+From Stdlib Require Import SetoidClass.
 Local Open Scope type_scope.
 
 Inductive andT (A B:Type) : Prop :=

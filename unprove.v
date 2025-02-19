@@ -1,5 +1,5 @@
-Require Import Utf8_core.
-Require Import FunInd.
+From Stdlib Require Import Utf8_core.
+From Stdlib Require Import FunInd.
 Require ILLVarInt. (* Don't want import it. *)
 Import ILLVarInt.MILL. (* only this *)
 Import FormulaMultiSet. (* and this *)

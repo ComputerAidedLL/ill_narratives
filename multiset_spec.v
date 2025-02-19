@@ -1,7 +1,8 @@
-Require Import FMapInterface.
-Require Import FMapFacts.
-Require Import FMapAVL.
-Require Import OrderedType.
+From Stdlib Require Import FMapInterface.
+From Stdlib Require Import FMapFacts.
+From Stdlib Require Import FMapAVL.
+From Stdlib Require Import OrderedType.
+From Stdlib Require Import FunInd.
 Module Type S(X:OrderedType).
 
   Local Notation A := X.t.

@@ -12,11 +12,11 @@ ensuite il suffit de taper la commande latex correspondante.
 ⊤ \top
 ⊢ \vdash
 *)
-Require Import FunInd.
+From Stdlib Require Import FunInd.
 Require Import multiset_spec.
 Require Import ILL_spec.
-Require Import OrderedType.
-Require Import Utf8_core.
+From Stdlib Require Import OrderedType.
+From Stdlib Require Import Utf8_core.
 Require Import vars.
 Require Import formulas_spec.
 

@@ -14,8 +14,8 @@ ensuite il suffit de taper la commande latex correspondante.
 *)
 Require Import multiset_spec.
 Require Import ILL_spec.
-Require Import OrderedType.
-Require Import Utf8_core.
+From Stdlib Require Import OrderedType.
+From Stdlib Require Import Utf8_core.
 Require Import vars.
 
 Require Import ILL.
@@ -192,8 +192,8 @@ Require Import ILL.
   End figure_5.
 End MakePaperProofs.
 *)
-Require Import String.
-Require Import Setoid.
+From Stdlib Require Import String.
+From Stdlib Require Import Setoid.
 
 
 Module PaperProofsString.

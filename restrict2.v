@@ -1,4 +1,5 @@
-Require Import Utf8_core basic.
+From Stdlib Require Import Utf8_core.
+Require Import basic.
 Require ILLVarInt. (* Don't want import it. *)
 Import ILLVarInt.MILL. (* only this *)
 Import FormulaMultiSet. (* and this *)
