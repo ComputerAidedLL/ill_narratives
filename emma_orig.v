@@ -22,51 +22,51 @@ Open Scope ILL_scope.
 Open Scope Emma.
 
 Lemma simpl_ex: {P ⊸ M, P, !(S ⊸ A)} ⊢ A ⊕ M.
-Proof with try solve [ apply Id;reflexivity | prove_multiset_eq].
-  bang_w (S ⊸ A)...
-  weak_impl_l P M...
-  apply Oplus_R_2...
+Proof.
+  bang_w (S ⊸ A).
+  weak_impl_l P M; try solve [ apply Id;reflexivity | prove_multiset_eq].
+  apply Oplus_R_2; try solve [ apply Id;reflexivity | prove_multiset_eq].
 Defined.
 
 (* EXAMPLE OF IMPOSSIBLE INTERNAL CHOICE *)
 Lemma originelle :
   {P&1, R, G, B&1, !(S⊸A), (E⊸A)&1, (P⊸M)&1,(R⊸1)&(R⊸E), (G⊸1)⊕(G⊸S), 1⊕((B⊸S)&(B⊸1))  } ⊢ A ⊕ M .
-Proof with try solve [ apply Id;reflexivity | prove_multiset_eq].
+Proof.
   and_l_2 (R⊸1) (R⊸E).
   oplus_l (G ⊸ 1) (G ⊸ S).
   2:{
-  weak_impl_l G S...
-  weak_impl_l R E...
+  weak_impl_l G S; try solve [ apply Id;reflexivity | prove_multiset_eq].
+  weak_impl_l R E; try solve [ apply Id;reflexivity | prove_multiset_eq].
   bang_c (S ⊸ A).
   bang_d (S ⊸ A).
-  weak_impl_l S A...
+  weak_impl_l S A; try solve [ apply Id;reflexivity | prove_multiset_eq].
   and_l_1 (E ⊸ A) 1.
-  weak_impl_l E A... (* THERE ARE TWO A *)
+  weak_impl_l E A; try solve [ apply Id;reflexivity | prove_multiset_eq]. (* THERE ARE TWO A *)
 Abort.
 
 Lemma originelle :
   {P&1, R, G, B&1, !(S⊸A), (E⊸A)&1, (P⊸M)&1,(R⊸1)&(R⊸E), (G⊸1)⊕(G⊸S), 1⊕((B⊸S)&(B⊸1))  } ⊢ A ⊕ M .
-Proof with try solve [ apply Id;reflexivity | prove_multiset_eq].
+Proof.
   oplus_l (G ⊸ 1) (G ⊸ S).
   - (* Left branch *)
-    weak_impl_l G 1...
+    weak_impl_l G 1; try solve [ apply Id;reflexivity | prove_multiset_eq].
     one_l.
     oplus_l 1 ((B ⊸ S) & (B ⊸ 1)).
     all: swap 1 2. (* switch subgoals to match the order of the document *)
     (* Left left. *) 
     + and_l_2 (B ⊸ S) (B ⊸ 1).
       and_l_1 B 1.
-      weak_impl_l B 1...
+      weak_impl_l B 1; try solve [ apply Id;reflexivity | prove_multiset_eq].
       one_l.
       and_l_1 (R ⊸ 1) (R ⊸ E).
-      weak_impl_l R 1...
+      weak_impl_l R 1; try solve [ apply Id;reflexivity | prove_multiset_eq].
       and_l_1 P 1.
       and_l_2 (E ⊸ A) 1.
       and_l_1 (P ⊸ M) 1.
       do 2 one_l.
-      bang_w (S ⊸ A)...
-      weak_impl_l P M...
-      apply Oplus_R_2...
+      bang_w (S ⊸ A).
+      weak_impl_l P M; try solve [ apply Id;reflexivity | prove_multiset_eq].
+      apply Oplus_R_2; try solve [ apply Id;reflexivity | prove_multiset_eq].
     + (* Left right *)
       and_l_2 B 1.
       do 2 one_l.
@@ -75,14 +75,14 @@ Proof with try solve [ apply Id;reflexivity | prove_multiset_eq].
       and_l_2 (P ⊸ M) 1.
       and_l_2 (R ⊸ 1) (R ⊸ E).
       do 2 one_l.
-      bang_w (S ⊸ A)...
-      weak_impl_l R E...
-      weak_impl_l E A...
-      apply Oplus_R_1...
+      bang_w (S ⊸ A).
+      weak_impl_l R E; try solve [ apply Id;reflexivity | prove_multiset_eq].
+      weak_impl_l E A; try solve [ apply Id;reflexivity | prove_multiset_eq].
+      apply Oplus_R_1; try solve [ apply Id;reflexivity | prove_multiset_eq].
   - (* Right branch of the document *)
-    weak_impl_l G S...
+    weak_impl_l G S; try solve [ apply Id;reflexivity | prove_multiset_eq].
     and_l_1(R ⊸ 1) (R ⊸ E).
-    weak_impl_l R 1...
+    weak_impl_l R 1; try solve [ apply Id;reflexivity | prove_multiset_eq].
     one_l. (* +L in the document but actually 1L *)
     oplus_l 1 ((B ⊸ S) & (B ⊸ 1)).
     + (* Right left *)
@@ -91,21 +91,21 @@ Proof with try solve [ apply Id;reflexivity | prove_multiset_eq].
       and_l_2 (E ⊸ A)  1.
       and_l_2 (P ⊸ M) 1.
       repeat one_l.
-      bang_d (S ⊸ A)... (* !D instead of WL *)
-      weak_impl_l S A...
-      apply Oplus_R_1...
+      bang_d (S ⊸ A). (* !D instead of WL *)
+      weak_impl_l S A; try solve [ apply Id;reflexivity | prove_multiset_eq].
+      apply Oplus_R_1; try solve [ apply Id;reflexivity | prove_multiset_eq].
     + (* Right right *)
       and_l_2 (B ⊸ S) (B ⊸ 1).
       and_l_1 B 1.
-      weak_impl_l B 1...
+      weak_impl_l B 1; try solve [ apply Id;reflexivity | prove_multiset_eq].
       one_l.
       and_l_2 P 1.
       and_l_2 (E ⊸ A) 1.
       and_l_2 (P ⊸ M) 1.
       repeat one_l.
-      bang_d (S ⊸ A)... (* !D instead of WL *)
-      weak_impl_l S A...
-      apply Oplus_R_1...
+      bang_d (S ⊸ A). (* !D instead of WL *)
+      weak_impl_l S A; try solve [ apply Id;reflexivity | prove_multiset_eq].
+      apply Oplus_R_1; try solve [ apply Id;reflexivity | prove_multiset_eq].
 Defined.
 
 Ltac search_goal n g := 
@@ -156,9 +156,9 @@ Ltac search_goal n g :=
 
 Lemma originelle' :
   {P&1, R, G, B&1, !(S⊸A), (E⊸A)&1, (P⊸M)&1,(R⊸1)&(R⊸E), (G⊸1)⊕(G⊸S), 1⊕((B⊸S)&(B⊸1))  } ⊢ A ⊕ M .
-Proof with try solve [ apply Id;reflexivity | prove_multiset_eq].
+Proof.
   oplus_l (G ⊸ 1) (G ⊸ S).
-  - weak_impl_l G 1...
+  - weak_impl_l G 1; try solve [ apply Id;reflexivity | prove_multiset_eq].
     one_l.
     oplus_l 1 ((B ⊸ S) & (B ⊸ 1)).
     + and_l_2 B 1.
@@ -169,25 +169,25 @@ Proof with try solve [ apply Id;reflexivity | prove_multiset_eq].
       finish_proof_strong.
     + and_l_2 (B ⊸ S) (B ⊸ 1).
       and_l_1 B 1.
-      weak_impl_l B 1...
-      one_l.  
+      weak_impl_l B 1; try solve [ apply Id;reflexivity | prove_multiset_eq].
+      one_l.
       and_l_1 (R ⊸ 1) (R ⊸ E).
-      weak_impl_l R 1...
+      weak_impl_l R 1; try solve [ apply Id;reflexivity | prove_multiset_eq].
       and_l_1 P 1.
       Time search_goal 6 ({P ⊸ M, P} ⊢ A ⊕ M).
       finish_proof_strong.
-  - weak_impl_l G S...
+  - weak_impl_l G S; try solve [ apply Id;reflexivity | prove_multiset_eq].
     and_l_1(R ⊸ 1) (R ⊸ E).
-    weak_impl_l R 1...
+    weak_impl_l R 1; try solve [ apply Id;reflexivity | prove_multiset_eq].
     one_l.
     oplus_l 1 ((B ⊸ S) & (B ⊸ 1)).
     + search_goal 10 ({S, !(S ⊸ A)} ⊢ A ⊕ M).
-      bang_d (S ⊸ A)... (* !D instead of WL *)
+      bang_d (S ⊸ A). (* !D instead of WL *)
       finish_proof_strong.
     + and_l_2 (B ⊸ S) (B ⊸ 1).
       and_l_1 B 1.
       Time search_goal 10 ({S, !(S ⊸ A)} ⊢ A ⊕ M).
-      bang_d (S ⊸ A)... (* !D instead of WL *)
+      bang_d (S ⊸ A). (* !D instead of WL *)
       finish_proof_strong.
   Qed.
 

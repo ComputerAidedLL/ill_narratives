@@ -26,7 +26,7 @@ Notation "∅" := Leaf.
 Notation "a ≻ b" := (Next a b) (at level 90, right associativity).
 Notation "a ⋈ b" := (Branch a b) (at level 91, right associativity).
 Notation "a ∣∣ b" := (Paral a b) (at level 92, right associativity).
-Notation "[ a ]" := (Impl a) (at level 89, right associativity).
+Notation "[ a ]" := (Impl a) (at level 0, right associativity).
 
 (* Show Obligation Tactic. *)
 Local Obligation Tactic :=

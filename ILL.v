@@ -30,7 +30,7 @@ Module ILL_Make(Vars : OrderedType)<:ILL_sig(Vars).
 
   Infix "∪" := union (at level 65, right associativity) : ILL_scope.
   Notation " a :: b " := (add a b) (at level 60, right associativity) : ILL_scope.
-  Notation "{ a , .. , b }" := (add a .. (add b empty) ..) (at level 40): ILL_scope.
+  Notation "{ a , .. , b }" := (add a .. (add b empty) ..) (at level 0): ILL_scope.
   Notation "∅" := empty : ILL_scope.
 
   (* Notation pour l'égalité des environnements (égalité des multisets). *)

@@ -87,25 +87,25 @@ Proof.
 Qed.
 
 Lemma simple: { G, ((B⊸S)&(B⊸R))&1,(G⊸B)⊕(G⊸S)} ⊢ S⊕R.
-Proof with try solve [ apply Id;reflexivity | prove_multiset_eq].
+Proof.
   oplus_l (G⊸B) (G⊸S).
-  weak_impl_l G B...
+  weak_impl_l G B; try solve [ apply Id;reflexivity | prove_multiset_eq].
   and_l_1 ((B ⊸ S) & (B ⊸ R)) 1.
 
   and_l_1 (B ⊸ S) (B ⊸ R).
-  weak_impl_l B S...
-  apply Oplus_R_1...
+  weak_impl_l B S; try solve [ apply Id;reflexivity | prove_multiset_eq].
+  apply Oplus_R_1; try solve [ apply Id;reflexivity | prove_multiset_eq].
 
   (*
   and_l_2 (B ⊸ S) (B ⊸ R).
-  weak_impl_l B R...
-  apply Oplus_R_2...
+  weak_impl_l B R; try solve [ apply Id;reflexivity | prove_multiset_eq].
+  apply Oplus_R_2; try solve [ apply Id;reflexivity | prove_multiset_eq].
    *)
 
-  weak_impl_l G S...
+  weak_impl_l G S; try solve [ apply Id;reflexivity | prove_multiset_eq].
   and_l_2 ((B ⊸ S) & (B ⊸ R)) 1.
   one_l.
-  apply Oplus_R_1...
+  apply Oplus_R_1. solve [ apply Id;reflexivity | prove_multiset_eq].
 Defined.
 
 

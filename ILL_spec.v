@@ -27,7 +27,7 @@ Module Type ILL_sig(Vars : OrderedType).
   Open Scope ILL_scope.
   Infix "∪" := union (at level 65, right associativity) : ILL_scope.
   Notation " a :: b " := (add a b) (at level 60, right associativity) : ILL_scope.
-  Notation "{ a , .. , b }" := (add a .. (add b empty) ..) (at level 40): ILL_scope.
+  Notation "{ a , .. , b }" := (add a .. (add b empty) ..) (at level 0): ILL_scope.
   Notation "∅" := empty : ILL_scope.
 
   (* Notation pour l'égalité des environnements (égalité des multisets). *)
@@ -152,11 +152,11 @@ Module Type PaperProofs_spec(Vars : OrderedType)(M : ILL_sig(Vars)).
     Local Notation "'M'" := (Proposition vM).
     Local Notation "'L'" := (Proposition vL).
 
-    Local Notation "'ρ'" := ({ H , F,L,D₂, G⊸(!(H⊸(H⊗M))) }) .
-    Local Notation "'μ'" := ({ !((D₁⊗M)⊸D₀),!((D₂⊗M)⊸D₁)}).
-    Local Notation "'λ'" := ({ !((L⊗D₀)⊸(L⊗D₁)),!((L⊗D₁)⊸(L⊗D₂))}) (at level 10).
+    Local Notation "'r'" := ({ H , F,L,D₂, G⊸(!(H⊸(H⊗M))) }) .
+    Local Notation "'m'" := ({ !((D₁⊗M)⊸D₀),!((D₂⊗M)⊸D₁)}).
+    Local Notation "'l'" := ({ !((L⊗D₀)⊸(L⊗D₁)),!((L⊗D₁)⊸(L⊗D₂))}).
 
     Parameter figure_5 : 
-      {H,L,G,D₂,G⊸!(H⊸(H⊗M)),(L⊗(D₂⊗H))⊸(L⊗(D₀⊗((L⊗D₂)⊸D)))}∪λ∪μ⊢D.
+      {H,L,G,D₂,G⊸!(H⊸(H⊗M)),(L⊗(D₂⊗H))⊸(L⊗(D₀⊗((L⊗D₂)⊸D)))}∪l∪m⊢D.
   End figure_5.
 End PaperProofs_spec.

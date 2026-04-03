@@ -2121,4 +2121,7 @@ Qed.
     eapply ILL_proof_pre_morph;try eassumption.
     apply eq_bool_correct;assumption.
   Qed.
+
+  Create HintDb proof.
+  Create Rewrite HintDb proof.
   #[export] Hint Resolve ILL_proof_pre_morph' : proof.

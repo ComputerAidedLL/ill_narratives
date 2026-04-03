@@ -5,7 +5,7 @@ From Stdlib Require Import OrderedType.
 From Stdlib Require Import FunInd.
 Module Type S(X:OrderedType).
 
-  Local Notation A := X.t.
+  Local Abbreviation A := X.t.
   Parameter t : Type.
 
   Parameter empty : t.
@@ -33,11 +33,11 @@ Module Type S(X:OrderedType).
   Parameter union : t -> t -> t.
 
   Parameter is_empty_empty : is_empty empty = true.
-  
+
   Parameter is_empty_no_mem : forall ms, is_empty ms = true <-> (forall a, mem a ms = false). 
 
   Parameter add_is_not_empty : forall a ms, is_empty (add a ms) = false.
-  
+
   Parameter add_is_mem : forall a b ms, X.eq a b -> mem a (add b ms) = true.
 
   Parameter mem_destruct : forall a b ms, mem a (add b ms) = true -> X.eq a b \/ mem a ms = true.

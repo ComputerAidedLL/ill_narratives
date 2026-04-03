@@ -9,7 +9,7 @@ Module PreMake(X:OrderedType)(Maps:FMapInterface.S with Module E:=X) <: S(X).
   Module MapsFact := WFacts(Maps).
 
 
-  Local Notation A := X.t.
+  Local Abbreviation A := X.t.
   Definition t := Maps.t nat.
 
   Definition empty : t := Maps.empty nat.
@@ -1241,7 +1241,7 @@ Qed.
 
   Infix "∪" := union (at level 65, right associativity) : ILL_scope.
   Notation " a :: b " := (add a b) (at level 60, right associativity) : ILL_scope.
-  Notation "{ a , .. , b }" := (add a .. (add b empty) ..) (at level 40): ILL_scope.
+  Notation "{ a , .. , b }" := (add a .. (add b empty) ..) (at level 0): ILL_scope.
   Notation "∅" := (empty) : ILL_scope.
   Notation " E == F " := (eq E F) (at level 80): ILL_scope.
 
@@ -1403,7 +1403,7 @@ Qed.
 
 
  Lemma union_singleton_decompose : 
-   ∀ Δ Δ' φ, Δ∪Δ' == {φ} -> (Δ=={φ}/\Δ'==∅)\/(Δ'=={φ}/\Δ==∅).
+   ∀ Δ Δ' φ, Δ∪Δ' == {φ} -> ((Δ=={φ})/\(Δ'==∅))\/((Δ'=={φ})/\(Δ==∅)).
  Proof.
    intros Δ Δ' φ H.
    destruct (env_decomp Δ).
@@ -1497,8 +1497,8 @@ Qed.
 
  Lemma union_decompose : 
    ∀ Γ Δ Δ' φ, Δ∪Δ' == φ::Γ -> 
-   (exists Δ0, Δ == φ :: Δ0 /\ Δ0∪Δ' == Γ)\/
-   (exists Δ0, Δ' == φ :: Δ0 /\ Δ0∪Δ == Γ).
+   (exists Δ0, (Δ == φ :: Δ0) /\ (Δ0∪Δ' == Γ)) \/
+   (exists Δ0, (Δ' == φ :: Δ0) /\ (Δ0∪Δ == Γ)).
  Proof.
    intros Γ.
 
@@ -1530,7 +1530,7 @@ Qed.
    rewrite union_sym;assumption.
  Qed.
 
- Lemma union_empty_decompose : ∀ Δ Δ', Δ∪Δ'== ∅ -> Δ==∅/\Δ'==∅.
+ Lemma union_empty_decompose : ∀ Δ Δ', Δ∪Δ'== ∅ -> (Δ==∅)/\(Δ'==∅).
  Proof.
    intros Δ.
    induction Δ using multiset_ind.

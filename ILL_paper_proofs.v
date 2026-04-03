@@ -216,62 +216,62 @@ Module PaperProofsString.
 
   Lemma Copy_Proof_from_figure_1:
   {D, P & 1, R & 1, D ⊸ (((P ⊸ S) ⊕ (R ⊸ (1 ⊕ (P ⊸ S)))) ⊗ D)} ⊢ ((S ⊗ D) ⊕ D).
-  Proof with (try solve [id]).
-      impl_l ({D}) ({(P&1) , (R&1) }) (D) ((((P ⊸ S) ⊕ (R ⊸ (1 ⊕ (P ⊸ S)))) ⊗ D))...
+  Proof.
+      impl_l ({D}) ({(P&1) , (R&1) }) (D) ((((P ⊸ S) ⊕ (R ⊸ (1 ⊕ (P ⊸ S)))) ⊗ D)); try solve [id].
       times_l ((P ⊸ S) ⊕ (R ⊸ (1 ⊕ (P ⊸ S)))) D.
       oplus_l (P ⊸ S) (R ⊸ (1 ⊕ (P ⊸ S))).
       - and_l_1 P 1.
         and_l_2 R 1.
         one_l.
         apply Oplus_R_1.
-        times_r ({P, (P ⊸ S) }) ({D})...
-        impl_l  ({P}) (∅) (P) (S)...
+        times_r ({P, (P ⊸ S) }) ({D}); try solve [id].
+        impl_l  ({P}) (∅) (P) (S); try solve [id].
       - and_l_1 R 1.
-        impl_l({R}) ({D, P & 1 }) (R) ((1 ⊕ (P ⊸ S)))...
+        impl_l({R}) ({D, P & 1 }) (R) ((1 ⊕ (P ⊸ S))); try solve [id].
         oplus_l 1 (P ⊸ S).
         + one_l.
           and_l_2 P 1.
           one_l.
-          apply Oplus_R_2...
+          apply Oplus_R_2; try solve [id].
         + and_l_1 (P) 1.
           apply Oplus_R_1.
-          times_r ({ P , P ⊸ S}) ({D})...
-          impl_l ({P}) (∅) (P) (S)...
+          times_r ({ P , P ⊸ S}) ({D}); try solve [id].
+          impl_l ({P}) (∅) (P) (S); try solve [id].
     Qed.
 
   (* Same proof as above but with some more automation *)
   Lemma Copy_Proof_from_figure_1_with_weak_search:
   {D, P & 1, R & 1, D ⊸ (((P ⊸ S) ⊕ (R ⊸ (1 ⊕ (P ⊸ S)))) ⊗ D)} ⊢ ((S ⊗ D) ⊕ D).
   Proof with try now id.
-    impl_l  ({D}) ({(P&1) , (R&1) }) (D) ((((P ⊸ S) ⊕ (R ⊸ (1 ⊕ (P ⊸ S)))) ⊗ D))...
+    impl_l  ({D}) ({(P&1) , (R&1) }) (D) ((((P ⊸ S) ⊕ (R ⊸ (1 ⊕ (P ⊸ S)))) ⊗ D)); try now id.
     search_one_goal ({D, (P ⊸ S) ⊕ (R ⊸ (1 ⊕ (P ⊸ S))), P & 1, R & 1} ⊢ (S ⊗ D) ⊕ D).
     oplus_l (P ⊸ S) (R ⊸ (1 ⊕ (P ⊸ S))).
     search_one_goal ({P, P ⊸ S, D} ⊢ (S ⊗ D) ⊕ D).
     apply Oplus_R_1.
-    times_r ({P, (P ⊸ S) }) ({D})...
-    impl_l ({P}) (∅) (P) (S)...
+    times_r ({P, (P ⊸ S) }) ({D}); try now id.
+    impl_l ({P}) (∅) (P) (S); try now id.
     search_one_goal ({R, R ⊸ (1 ⊕ (P ⊸ S)), D, P & 1} ⊢ (S ⊗ D) ⊕ D).
-    impl_l ({R}) ({D, P & 1 }) (R) ((1 ⊕ (P ⊸ S)))...
+    impl_l ({R}) ({D, P & 1 }) (R) ((1 ⊕ (P ⊸ S))); try now id.
     oplus_l 1 (P ⊸ S).
     search_one_goal ({D} ⊢ (S ⊗ D) ⊕ D).
-    apply Oplus_R_2...
+    apply Oplus_R_2; try now id.
     search_one_goal ( {P ⊸ S, D, P} ⊢ (S ⊗ D) ⊕ D).
     apply Oplus_R_1.
-    times_r ({ P , P ⊸ S}) ({D})...
-    impl_l ({P}) (∅) (P) (S)...
+    times_r ({ P , P ⊸ S}) ({D}); try now id.
+    impl_l ({P}) (∅) (P) (S); try now id.
   Qed.
 
   Lemma Copy_Proof_from_figure_1_with_stronger_search:
     {D, P & 1, R & 1, D ⊸ (((P ⊸ S) ⊕ (R ⊸ (1 ⊕ (P ⊸ S)))) ⊗ D)} ⊢ ((S ⊗ D) ⊕ D).
-  Proof with try solve [ id | finish_proof_strong]. (* (finish_proof_strong || prove_multiset_eq).*)
+  Proof.
     search_one_goal_strong ({D, (P ⊸ S) ⊕ (R ⊸ (1 ⊕ (P ⊸ S))), P & 1, R & 1} ⊢ (S ⊗ D) ⊕ D).
     oplus_l (P ⊸ S) (R ⊸ (1 ⊕ (P ⊸ S))).
     - search_one_goal_strong ({P, P ⊸ S, D} ⊢ (S ⊗ D)).
-      times_r ({P, (P ⊸ S) }) ({D})...
+      times_r ({P, (P ⊸ S) }) ({D}); try solve [ id | finish_proof_strong].
     - search_one_goal_strong ({1 ⊕ (P ⊸ S), D, P & 1} ⊢ (S ⊗ D) ⊕ D).
-      oplus_l 1 (P ⊸ S)...
+      oplus_l 1 (P ⊸ S); try solve [ id | finish_proof_strong].
       search_one_goal_strong ( {P ⊸ S, D, P} ⊢ (S ⊗ D)).
-      times_r  ({ P , P ⊸ S}) ({D})...
+      times_r  ({ P , P ⊸ S}) ({D}); try solve [ id | finish_proof_strong].
   Qed.
 End figure_1.
 
@@ -288,9 +288,9 @@ Section figure_5.
   Local Notation "'L'" := (Proposition "vL'"%string).
 
 
-  Local Notation "'ρ'" := ({ H,F,L,D₂, G⊸(!(H⊸(H⊗M))) }).
-  Local Notation "'μ'" := ({ !((D₁⊗M)⊸D₀),!((D₂⊗M)⊸D₁)}).
-  Local Notation "'λ'" := ({ !((L⊗D₀)⊸(L⊗D₁)),!((L⊗D₁)⊸(L⊗D₂))}) (at level 10).
+  Local Notation "'r'" := ({ H,F,L,D₂, G⊸(!(H⊸(H⊗M))) }).
+  Local Notation "'m'" := ({ !((D₁⊗M)⊸D₀),!((D₂⊗M)⊸D₁)}).
+  Local Notation "'l'" := ({ !((L⊗D₀)⊸(L⊗D₁)),!((L⊗D₁)⊸(L⊗D₂))}).
 
   (* Ltac bang_c  p'   :=  *)
   (*   match goal with  *)
@@ -313,45 +313,44 @@ Section figure_5.
   (*   end. *)
 
   Lemma figure_5 : 
-    {H,L,G,D₂,G⊸!(H⊸(H⊗M)),(L⊗(D₂⊗H))⊸(L⊗(D₀⊗((L⊗D₂)⊸D)))}∪λ∪μ⊢D.
-  Proof with try now (finish_proof_strong || prove_multiset_eq).
-      search_one_goal_strong ({H,L,D₂,!(H⊸(H⊗M)),(L⊗(D₂⊗H))⊸(L⊗(D₀⊗((L⊗D₂)⊸D)))}∪λ∪μ⊢D).
+    {H,L,G,D₂,G⊸!(H⊸(H⊗M)),(L⊗(D₂⊗H))⊸(L⊗(D₀⊗((L⊗D₂)⊸D)))}∪l∪m⊢D.
+  Proof.
+      search_one_goal_strong ({H,L,D₂,!(H⊸(H⊗M)),(L⊗(D₂⊗H))⊸(L⊗(D₀⊗((L⊗D₂)⊸D)))}∪l∪m⊢D).
       bang_c (H⊸(H⊗M)).
       bang_d ((H⊸(H⊗M))).
       search_one_goal_strong ((H ⊗ M)
         :: {L, D₂, !(H ⊸ (H ⊗ M)),
           (L ⊗ (D₂ ⊗ H)) ⊸ (L ⊗ (D₀ ⊗ ((L ⊗ D₂) ⊸ D)))} ∪ 
-        λ ∪ μ⊢D).
+        l ∪ m⊢D).
       search_one_goal_strong ( {H ,M,L, D₂, !(H ⊸ (H ⊗ M)),
         (L ⊗ (D₂ ⊗ H)) ⊸ (L ⊗ (D₀ ⊗ ((L ⊗ D₂) ⊸ D)))} ∪ 
-      λ ∪ μ⊢D).
+      l ∪ m⊢D).
       bang_c ((D₂⊗M)⊸D₁).
       bang_d ((D₂⊗M)⊸D₁).
-      impl_l ({M,D₂}) ({H, L,  !(H ⊸ (H ⊗ M)), (L ⊗ (D₂ ⊗ H)) ⊸ (L ⊗ (D₀ ⊗ ((L ⊗ D₂) ⊸ D)))} ∪ λ ∪ μ) (D₂⊗M) (D₁).
-      times_r ({ D₂}) ({M})...
-      search_one_goal_strong ({D₁,H, L,  (L ⊗ (D₂ ⊗ H)) ⊸ (L ⊗ (D₀ ⊗ ((L ⊗ D₂) ⊸ D)))} ∪ λ ⊢ D).
-      bang_c ((L⊗D₁)⊸(L⊗D₂))...
-      bang_d ((L⊗D₁)⊸(L⊗D₂))...
-      impl_l ({L,D₁}) ({H, (L ⊗ (D₂ ⊗ H)) ⊸ (L ⊗ (D₀ ⊗ ((L ⊗ D₂) ⊸ D)))}∪λ) (L⊗D₁) (L⊗D₂)...
-      times_r  ({L}) ({D₁})...
-      search_one_goal_strong ({L,D₂,H, (L ⊗ (D₂ ⊗ H)) ⊸ (L ⊗ (D₀ ⊗ ((L ⊗ D₂) ⊸ D)))} ∪ λ ⊢ D).
-      impl_l ({L,D₂,H}) ({ !((L⊗D₀)⊸(L⊗D₁)),!((L⊗D₁)⊸(L⊗D₂))}) (L⊗(D₂⊗H)) ((L ⊗ (D₀ ⊗ ((L ⊗ D₂) ⊸ D))))...
-      times_r ({L}) ({D₂,H})...
-      times_r ({D₂}) ({H})...
-      search_one_goal_strong ({L,D₀,((L ⊗ D₂) ⊸ D)}∪λ⊢D).
-      bang_c ((L⊗D₀)⊸(L⊗D₁))...
-      bang_d ((L⊗D₀)⊸(L⊗D₁))...
+      impl_l ({M,D₂}) ({H, L,  !(H ⊸ (H ⊗ M)), (L ⊗ (D₂ ⊗ H)) ⊸ (L ⊗ (D₀ ⊗ ((L ⊗ D₂) ⊸ D)))} ∪ l ∪ m) (D₂⊗M) (D₁).
+      times_r ({ D₂}) ({M}); try now (finish_proof_strong || prove_multiset_eq).
+      search_one_goal_strong ({D₁,H, L,  (L ⊗ (D₂ ⊗ H)) ⊸ (L ⊗ (D₀ ⊗ ((L ⊗ D₂) ⊸ D)))} ∪ l ⊢ D).
+      bang_c ((L⊗D₁)⊸(L⊗D₂)).
+      bang_d ((L⊗D₁)⊸(L⊗D₂)).
+      impl_l ({L,D₁}) ({H, (L ⊗ (D₂ ⊗ H)) ⊸ (L ⊗ (D₀ ⊗ ((L ⊗ D₂) ⊸ D)))}∪l) (L⊗D₁) (L⊗D₂); try now (finish_proof_strong || prove_multiset_eq).
+      times_r  ({L}) ({D₁}); try now (finish_proof_strong || prove_multiset_eq).
+      search_one_goal_strong ({L,D₂,H, (L ⊗ (D₂ ⊗ H)) ⊸ (L ⊗ (D₀ ⊗ ((L ⊗ D₂) ⊸ D)))} ∪ l ⊢ D).
+      impl_l ({L,D₂,H}) ({ !((L⊗D₀)⊸(L⊗D₁)),!((L⊗D₁)⊸(L⊗D₂))}) (L⊗(D₂⊗H)) ((L ⊗ (D₀ ⊗ ((L ⊗ D₂) ⊸ D)))); try now (finish_proof_strong || prove_multiset_eq).
+      times_r ({L}) ({D₂,H}); try now (finish_proof_strong || prove_multiset_eq).
+      times_r ({D₂}) ({H}); try now (finish_proof_strong || prove_multiset_eq).
+      search_one_goal_strong ({L,D₀,((L ⊗ D₂) ⊸ D)}∪l⊢D).
+      bang_c ((L⊗D₀)⊸(L⊗D₁)).
+      bang_d ((L⊗D₀)⊸(L⊗D₁)).
       impl_l 
         ({L,D₀})
         ({!((L ⊗ D₀) ⊸ (L ⊗ D₁)), (L ⊗ D₂) ⊸ D, !((L ⊗ D₁) ⊸ (L ⊗ D₂))})
         (L⊗D₀)
-        (L⊗D₁)...
-      times_r ({L}) ({D₀})...
-      search_one_goal_strong (   {L ⊗ D₁, (L ⊗ D₂) ⊸ D, !((L ⊗ D₁) ⊸ (L ⊗ D₂))} ⊢ D).
-      bang_c 
-      (((L ⊗ D₁) ⊸ (L ⊗ D₂)))...
+        (L⊗D₁); try now (finish_proof_strong || prove_multiset_eq).
+      times_r ({L}) ({D₀}); try now (finish_proof_strong || prove_multiset_eq).
+      search_one_goal_strong (   {L ⊗ D₁, (L ⊗ D₂) ⊸ D, !((L ⊗ D₁) ⊸ (L ⊗ D₂))} ⊢ D).      bang_c 
+      (((L ⊗ D₁) ⊸ (L ⊗ D₂))).
       bang_d 
-        (((L ⊗ D₁) ⊸ (L ⊗ D₂)))...
+        (((L ⊗ D₁) ⊸ (L ⊗ D₂))); try now (finish_proof_strong || prove_multiset_eq).
 Qed.
 
 End figure_5.

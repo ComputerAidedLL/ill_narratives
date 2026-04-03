@@ -88,17 +88,17 @@ Proof.
 Qed.
 
 Lemma simple: {P&1, B&1, (V⊸A)&1, (E⊸A)&1,(P⊸M)&1,B ⊸ 1,V}⊢A⊕M.
-Proof with try solve [ apply Id;reflexivity | prove_multiset_eq].
+Proof.
   and_l_1 B 1.
-  weak_impl_l B 1...
+  weak_impl_l B 1; try solve [ apply Id;reflexivity | prove_multiset_eq].
   one_l.
   and_l_2 P 1.
   and_l_2 (E ⊸ A) 1.
   and_l_2 (P ⊸ M) 1.
   repeat one_l.
-  and_l_1 (V ⊸ A) 1... (* !D au lieu de WL *)
-  weak_impl_l V A...
-  apply Oplus_R_1...
+  and_l_1 (V ⊸ A) 1. (* !D au lieu de WL *)
+  weak_impl_l V A; try solve [ apply Id;reflexivity | prove_multiset_eq].
+  apply Oplus_R_1. solve [ apply Id;reflexivity | prove_multiset_eq].
 Qed.
 
 (*
